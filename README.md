@@ -1,4 +1,5 @@
-EX-21-POINTERS
+# EX-21-POINTERS
+
 # AIM:
 Write a C program to convert a 23.65 into 25 using pointer
 
@@ -10,25 +11,31 @@ Write a C program to convert a 23.65 into 25 using pointer
 
 ## PROGRAM:
 
+```c
+#include <stdio.h>
+
+int main() {
+    double num = 23.65;    // Step 1: Declare and initialize variable
+    double *ptr;           // Step 2: Declare pointer
+
+    ptr = &num;            // Point to the address of num
+
+    *ptr = 25.0;           // Step 3: Modify the value through the pointer
+
+    // Step 4: Print the modified value
+    printf("Modified value: %.2lf\n", num);
+
+    return 0;
+}
+```
+
 ## OUTPUT:
+Modified value: 25.00
  	
-
-
-
-
-
-
-
-
-
-
-
 ## RESULT:
 Thus the program to convert a 23.65 into 25 using pointer has been executed successfully.
  
  
-
-
 # EX-22-FUNCTIONS AND STORAGE CLASS
 
 ## AIM:
@@ -45,15 +52,39 @@ Write a C program to calculate the Product of first 12 natural numbers using Rec
 6.	Print the result, indicating it is the product of the first 12 natural numbers.
 
 ## PROGRAM:
+
+```c
+#include <stdio.h>
+
+// Step 1: Define the recursive function
+unsigned long long calculateProduct(int n) {
+    if (n == 1)
+        return 1;  // Base case
+    else
+        return n * calculateProduct(n - 1);  // Recursive call
+}
+
+int main() {
+    int n = 12; // Step 4: Initialize n with 12
+    unsigned long long product;
+
+    // Step 5: Call the function and store result
+    product = calculateProduct(n);
+
+    // Step 6: Print the result
+    printf("The product of the first 12 natural numbers is: %llu\n", product);
+
+    return 0;
+}
+```
+
 ## OUTPUT:
+The product of the first 12 natural numbers is: 479001600
          		
 ## RESULT:
-
 Thus the program has been executed successfully.
  
  
-
-
 # EX-23-ARRAYS AND ITS OPERATIONS
 
 ## AIM:
@@ -69,17 +100,50 @@ Write C Program to find Sum of each row of a Matrix
 
 ## PROGRAM:
 
+```c
+#include <stdio.h>
 
+int main() {
+    int rows, cols, i, j;
+    
+    // Step 1: Declare the matrix
+    printf("Enter number of rows and columns: ");
+    scanf("%d %d", &rows, &cols);
+
+    int matrix[rows][cols];
+
+    // Input matrix elements
+    printf("Enter elements of the matrix:\n");
+    for (i = 0; i < rows; i++) {
+        for (j = 0; j < cols; j++) {
+            scanf("%d", &matrix[i][j]);
+        }
+    }
+
+    // Step 2, 3, 4: Find and print sum of each row
+    for (i = 0; i < rows; i++) {
+        int sum = 0;
+        for (j = 0; j < cols; j++) {
+            sum += matrix[i][j];
+        }
+        printf("Sum of elements in row %d = %d\n", i + 1, sum);
+    }
+
+    return 0;
+}
+```
 
 ## OUTPUT
+Enter number of rows and columns: 2 3
+Enter elements of the matrix:
+1 2 3
+4 5 6
+Sum of elements in row 1 = 6
+Sum of elements in row 2 = 15
 
-
+## RESULT
+Thus the program has been executed successfully.
  
- 
-
- ## RESULT
- 
-
 
 # EX-24-STRINGS
 
@@ -97,20 +161,50 @@ Write C program for the below pyramid string pattern. Enter a string: PROGRAM En
 
 ## PROGRAM:
 
+```c
+#include <stdio.h>
+#include <string.h>
 
- ## OUTPUT
+int main() {
+    char str[100];
+    int num_rows, i, j, k, midpoint, len;
 
- 
+    // Step 1: Input the string and number of rows
+    printf("Enter a string: ");
+    scanf("%s", str);
+
+    printf("Enter number of rows: ");
+    scanf("%d", &num_rows);
+
+    len = strlen(str);  // Find the length of the string
+
+    midpoint = (2 * num_rows - 1) / 2;  // Step 4: Calculate midpoint (though not needed much here)
+
+    // Step 3: Loop for each row
+    for (i = 1; i <= num_rows; i++) {
+        // Print characters up to string length
+        for (j = 0; j < len; j++) {
+            printf("%c ", str[j]);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
+```
+
+## OUTPUT
+Enter a string: PROGRAM
+Enter number of rows: 5
+P R O G R A M 
+P R O G R A M 
+P R O G R A M 
+P R O G R A M 
+P R O G R A M 
 
 ## RESULT
-
 Thus the C program to String process executed successfully
  
-
- 
-.
-
-
 
 # EX -25 –DISPLAYING ARRAYS USING POINTERS
 ## AIM
@@ -133,12 +227,52 @@ Step 6: End the program.
 
 ## PROGRAM
 
+```c
+#include <stdio.h>
+
+int main() {
+    int i, n;
+    int arr[10];       // Step 2: Array to hold up to 10 elements
+    int *parr = arr;   // Step 2: Pointer to array
+    
+    // Step 3: Read the number of elements
+    printf("Enter the number of elements (up to 6): ");
+    scanf("%d", &n);
+    
+    // Step 4: Read the array elements using pointer arithmetic
+    printf("Enter %d elements:\n", n);
+    for (i = 0; i < n; i++) {
+        printf("Element %d: ", i + 1);
+        scanf("%d", parr + i);  // Storing value at the address parr + i
+    }
+
+    // Step 5: Display the array elements using pointer dereferencing
+    printf("The elements of the array are:\n");
+    for (i = 0; i < n; i++) {
+        printf("Element %d: %d\n", i + 1, *(parr + i));  // Dereferencing to get the value
+    }
+
+    return 0;
+}
+```
+
 ## OUTPUT
 
- 
+Enter the number of elements (up to 6): 6
+Enter 6 elements:
+Element 1: 10
+Element 2: 20
+Element 3: 30
+Element 4: 40
+Element 5: 50
+Element 6: 60
+The elements of the array are:
+Element 1: 10
+Element 2: 20
+Element 3: 30
+Element 4: 40
+Element 5: 50
+Element 6: 60
 
 ## RESULT
-
 Thus the C program to read and display an array of any 6 integer elements using pointer has been executed
-
-
